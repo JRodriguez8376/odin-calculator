@@ -181,6 +181,7 @@ function parseInput(keypress) {
             break;
     }
 }
+//Bind specific keypresses to keys
 function parseKeys(event) {
     switch(event.key) {
         case "0":
@@ -219,10 +220,9 @@ function parseKeys(event) {
             break;
     }
 }
-
-
+//Adds event listeners for ever button on click
 calculatorButtons.forEach(elem =>  {
     elem.addEventListener("click", parseInput)
 });
-
+//Keypress event listener
 document.addEventListener("keydown", parseKeys);
