@@ -26,7 +26,7 @@ function multiply(num1, num2) {
 }
 function divide(num1, num2) {
         if(num2 === 0) {
-            return "ERROR, CANNOT DIVIDE BY 0, NICE TRY";
+            return "NICE TRY";
         }
         quotient = num1/num2;
         if(quotient.toString().includes(".")) {
@@ -41,6 +41,7 @@ function divide(num1, num2) {
 function operate(operator, operand1, operand2) {
     operand1 = parseFloat(operand1) || 0;
     operand2 = parseFloat(operand2) || 0;
+
     switch(operator) {
         case "+": 
             return(add(operand1, operand2));
@@ -51,7 +52,7 @@ function operate(operator, operand1, operand2) {
         case "/": 
             return(divide(operand1, operand2));
         default:
-            return "ERROR, no valid operator selected";
+            return "ERROR";
     }
 }
 function populateDisplay(value) {
@@ -121,6 +122,9 @@ function parseInput(keypress) {
         case "8":
         case "9":
         case "0":
+            if(displayValue.length > 10 && !newOperand) {
+                break;
+            }
             if(first) {
                 first = false;
                 displayValue = "";
@@ -168,12 +172,19 @@ function parseInput(keypress) {
             }
             totalValue = operate(currentOperator, storedValue, displayValue);
             displayValue = totalValue.toString();
+            storedValue = displayValue;
             clearDisplay();
             populateDisplay(totalValue); 
             validOperation = false;
             newOperand = false;
+            currentOperator = "";
             break;
         case "clear":
+            if(storedValue == "" || displayValue == "") {
+                clearDisplay();
+                populateDisplay(0);
+                break;
+            }
             clearDisplay();
             displayValue = "";
             storedValue = "";
