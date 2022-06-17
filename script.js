@@ -96,7 +96,6 @@ function parseInput(keypress) {
         case ".":
             if(newOperand) {
                 storedValue = displayValue;
-                console.log("Stored value: " + storedValue);
                 displayValue = "";
                 clearDisplay();
                 newOperand = false;
@@ -136,7 +135,6 @@ function parseInput(keypress) {
             }
             if(newOperand) {
                 storedValue = displayValue;
-                console.log("Stored value: " + storedValue);
                 displayValue = "";
                 clearDisplay();
                 newOperand = false;
@@ -150,8 +148,7 @@ function parseInput(keypress) {
         case "*":
         case "/":
             first = false;
-            if(validOperation) {+
-                console.log("Displayed Value: " + displayValue);
+            if(validOperation) {
                 totalValue = operate(currentOperator, storedValue, displayValue);
                 clearDisplay();
                 populateDisplay(totalValue);
@@ -218,7 +215,6 @@ function parseKeys(event) {
             break;
         case "Backspace":
             parseInput("back");
-            console.log("Backspace");
             break;
         case "c":
             parseInput("clear");
